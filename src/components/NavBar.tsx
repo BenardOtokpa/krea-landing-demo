@@ -29,10 +29,10 @@ const items: Item[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/image", label: "Image", icon: ImageIcon },
   { href: "/video", label: "Video", icon: Video },
-  { href: "/edit", label: "Edit", icon: Wand2 },
-  { href: "/draw", label: "Sketch", icon: PenTool },
-  { href: "/measure", label: "Measure", icon: DraftingCompass },
-  { href: "/files", label: "Files", icon: Folder },
+  { href: "/enhancer", label: "Enhancer", icon: Wand2 },
+  { href: "/draw", label: "Realtime", icon: PenTool },
+  { href: "/edit", label: "Edit", icon: DraftingCompass },
+  { href: "/assets", label: "Assets", icon: Folder },
 ];
 
 export default function Navbar() {
