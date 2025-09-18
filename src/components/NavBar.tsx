@@ -74,7 +74,7 @@ export default function Navbar() {
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5 " />
                   
                 </Link>
               </TooltipTrigger>
