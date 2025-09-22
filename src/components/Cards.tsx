@@ -8,26 +8,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { EmblaOptionsType } from "embla-carousel";
 
-const OPTIONS: EmblaOptionsType = { loop: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+import { Button } from "./ui/button";
 
 export default function Cards() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardTitle>new image model</CardTitle>
       </CardHeader>
       <CardContent>
-        
-
+        <h1>WAN 2.2</h1>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <div className="">
+          <h1>WAN 2.2 Image generation</h1>
+          <p>
+            Generate complex imgaes with the brand new and powerful WAN 2.2
+            model. Exceptional prompt adherence and ultra-realistics textures.
+          </p>
+        </div>
+        <Button>Try WAN 2.2</Button>
       </CardFooter>
     </Card>
   );

@@ -11,6 +11,7 @@ import {
   NextButton,
   usePrevNextButtons,
 } from "./EmblaCarouselArrowButtons";
+import Cards from "../Cards";
 
 type PropType = {
   slides: number[];
@@ -50,13 +51,9 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
 
   return (
     <section className="embla bg-cyan-100 ">
-      <div className="embla__viewport h-92 overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex">
-          {slides.map((index) => (
-            <div className="embla__slide shrink-0" key={index}>
-              <div className="embla__slide__number">{index + 1}</div>
-            </div>
-          ))}
+      <div className="embla__viewport overflow-hidden  bg-emerald-500" ref={emblaRef}>
+        <div className="embla__container flex ">
+         <Cards />
         </div>
       </div>
 
