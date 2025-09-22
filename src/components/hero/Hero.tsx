@@ -2,13 +2,53 @@ import React from "react";
 import EmblaCarousel from "../carousel/Carousel";
 import { EmblaOptionsType } from "embla-carousel";
 
+import type { Slide } from "@/components/Cards";
+
 const OPTIONS: EmblaOptionsType = { loop: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+
+const slidesData: Slide[] = [
+  {
+    title: "new Image model",
+    body: "WAN 2.2",
+    descHead: "WAN 2.2 Image generation",
+    descText:
+      "Generate complex imgaes with the brand new and powerful WAN 2.2 model. Exceptional prompt adherence and ultra-realistics textures.",
+    action: "Try WAN 2.2",
+    media: "/images/wan.png",
+  },
+  {
+    title: "Open source model",
+    body: " ",
+    descHead: "FLUX.1 Krea",
+    descText:
+      "We're making the weights to our FLUX.1 Krea model open-source. Download and run our model weights, read the technical report, or generate with it in Krea Image.",
+    action: "Try it now",
+    media: "/images/hero2.mp4",
+  },
+  {
+    title: "Motion Transfer model",
+    body: " ",
+    descHead: "Introducing Motion Transfer",
+    descText:
+      "Bring motion into your characters. Upload any image, record a video of yourself, and make your characters smile, talk, and dance. Powered by Runway Act 2.",
+    action: "Try motion",
+    media: "/images/hero3.mp4",
+  },
+  {
+    title: "new Video model",
+    body: "",
+    descHead: "Real-Time Video Generation",
+    descText:
+      "Announcing Realtime Video. Generate videos in real-time. Fully frame-consistent, controllable video clips.",
+    action: "Try it now",
+    media: "/images/hero4.mp4",
+  },
+];
+
 export default function Hero() {
   return (
     <div className="w-full h-[900px] py-10  ">
-      <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+      <EmblaCarousel slides={slidesData} options={OPTIONS} />
     </div>
   );
 }

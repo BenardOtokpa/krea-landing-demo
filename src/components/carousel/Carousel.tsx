@@ -1,3 +1,4 @@
+// components/carousel/EmblaCarousel.tsx
 "use client";
 
 import React, { useCallback } from "react";
@@ -11,20 +12,21 @@ import {
   NextButton,
   usePrevNextButtons,
 } from "./EmblaCarouselArrowButtons";
-import Cards from "../Cards";
+import SlideCard from "../Cards";
+import type { Slide } from "@/components/Cards";
 
-type PropType = {
-  slides: number[];
+type EmblaCarouselProps = {
+  slides: Slide[]; // <-- typed properly
   options?: EmblaOptionsType;
 };
 
-const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
+const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, ...options }, [
     Autoplay({
       delay: 3500,
       playOnInit: true,
-      stopOnInteraction: false, // keep autoplay after interactions
-      stopOnMouseEnter: true, // pause on hover (optional)
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
     }),
   ]);
 
@@ -37,7 +39,7 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  // Small helper: keep autoplay alive by resetting its timer on any interaction
+  // keep autoplay alive after manual interactions
   const withAutoplay = useCallback(
     (action: () => void) => {
       const autoplay = emblaApi?.plugins()?.autoplay as
@@ -50,35 +52,49 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
   );
 
   return (
-    <section className="embla bg-cyan-100 ">
-      <div className="embla__viewport overflow-hidden  bg-emerald-500" ref={emblaRef}>
-        <div className="embla__container flex ">
-         <Cards />
+    <section className="max-w-full mx-auto pr-12 pl-4  h-[600px] [--slide-height:30rem] [--slide-spacing:1rem] [--slide-size:80%]">
+      <div className="overflow-hidden  h-full" ref={emblaRef}>
+        <div className="flex touch-pan-y bg-lime-100 h-full  not-even:touch-pinch-zoom [margin-left:calc(var(--slide-spacing)*-1)]">
+          {slides.map((slide, idx) => (
+            <div
+              key={idx}
+              className="translate-z-0 flex-[0_0_var(--slide-size)] h-full min-w-0 pl-[var(--slide-spacing)]"
+            >
+              <SlideCard slide={slide} />
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="embla__controls">
-        <div className="embla__dots">
+      {/* Controls: align to the right like the screenshot */}
+      <div className="ml-auto flex items-center justify-between gap-6 w-1/2">
+        {/* Dots (left side) */}
+        <div className="flex items-center gap-2">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
               onClick={() => withAutoplay(() => onDotButtonClick(index))}
-              className={
-                "embla__dot" +
-                (index === selectedIndex ? " embla__dot--selected" : "")
-              }
+              className={[
+                // Base dot
+                "h-2.5 w-2.5 rounded-full transition-colors",
+                // Inactive (light gray) vs active (black)
+                index === selectedIndex ? "bg-black" : "bg-neutral-300",
+              ].join(" ")}
             />
           ))}
         </div>
 
-        <div className="embla__buttons">
+        {/* Arrows (right side*/}
+        <div className="flex items-center px-10">
           <PrevButton
             onClick={() => withAutoplay(onPrevButtonClick)}
             disabled={prevBtnDisabled}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40"
           />
           <NextButton
             onClick={() => withAutoplay(onNextButtonClick)}
             disabled={nextBtnDisabled}
+            className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40"
           />
         </div>
       </div>
