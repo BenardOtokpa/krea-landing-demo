@@ -52,12 +52,16 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
 
   return (
     <section
-      className={`outline outline-1 outline-amber-300
-        max-w-full mx-auto pr-12 pl-4
-        [--slide-spacing:1rem]
-        [--slide-size:85%] md:[--slide-size:72%] lg:[--slide-size:56%] xl:[--slide-size:55%]
-        mb-0
-      `}
+      className={`max-w-full mx-auto pr-12 pl-4
+    h-[26rem] sm:h-[30rem] lg:h-[34rem] xl:h-[36rem]   /* a bit shorter */
+    [--slide-spacing:1rem]
+    [--slide-size:85%]
+    md:[--slide-size:72%]
+    lg:[--slide-size:56%]
+    xl:[--slide-size:55%]
+   pb-0
+    -mb-2               /* <-- add this if you still see a gap */
+  `}
     >
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full touch-pan-y [margin-left:calc(var(--slide-spacing)*-1)]">

@@ -84,7 +84,7 @@ const items: GridItem[] = [
 
 export default function GenerateSection() {
   return (
-    <section className="mx-18 mt-4 outline outline-1 outline-lime-300">
+    <section className="mx-18 mt-0 outline outline-1 outline-lime-300">
       {/* Header row */}
       <div className=" flex items-center justify-between">
         <h2 className="text-lg font-semibold">Generate</h2>
