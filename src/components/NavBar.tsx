@@ -40,17 +40,20 @@ export default function Navbar() {
 
   return (
     <TooltipProvider delayDuration={80}>
-      <div
+      <nav
         className={cn(
-          "inline-flex items-center gap-4 rounded-[18px]",
-          "bg-muted p-2 shadow-inner"
+          // pill container
+          "inline-flex items-center gap-4 rounded-[18px] bg-muted p-2 shadow-inner",
+          // make it scrollable on small screens
+          "max-w-full overflow-x-auto sm:overflow-visible",
+          // hide scrollbars visually
+          "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         )}
+        aria-label="Primary"
       >
         {items.map((it, idx) => {
           const Icon = it.icon;
           const isActive = pathname === it.href;
-
-          // Special active style for the first (“Home”) tab = white pill with soft ring.
           const isHome = idx === 0;
 
           return (
@@ -59,32 +62,27 @@ export default function Navbar() {
                 <Link
                   href={it.href}
                   className={cn(
-                    "relative h-10 w-10 rounded-lg",
-                    "flex items-center justify-center",
-                    "transition-colors",
+                    "relative h-10 w-10 shrink-0 rounded-lg",
+                    "flex items-center justify-center transition-colors",
                     !isActive && "hover:bg-accent/60",
                     isActive &&
                       (isHome
-                        ? // white active pill (Home)
-                          "bg-white text-black ring-1 ring-black/5 shadow"
-                        : // dark gray active pill (others)
-                          "bg-neutral-800 text-white"),
-                    // icon color when not active
+                        ? "bg-white text-black ring-1 ring-black/5 shadow"
+                        : "bg-neutral-800 text-white"),
                     !isActive && "text-foreground"
                   )}
                   aria-current={isActive ? "page" : undefined}
                 >
-                  <Icon className="h-5 w-5 " />
-                  
+                  <Icon className="h-5 w-5" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="bottom" sideOffset={8}>
+              <TooltipContent side="bottom" sideOffset={8} className="hidden sm:block">
                 {it.label}
               </TooltipContent>
             </Tooltip>
           );
         })}
-      </div>
+      </nav>
     </TooltipProvider>
   );
 }

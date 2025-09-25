@@ -1,3 +1,4 @@
+// components/Cards.tsx
 import {
   Card,
   CardAction,
@@ -7,9 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export type Slide = {
   title: string;
@@ -17,14 +18,18 @@ export type Slide = {
   descHead: string;
   descText: string;
   action: string;
-  media: string; // image or .mp4
+  media: string;
   href?: string;
 };
-export default function SlideCard({ slide }: { slide: Slide }) {
-  const isVideo = slide.media.toLowerCase().endsWith(".mp4");
+
+export default function SlideCard({ slide, heightClass = "h-[28rem] sm:h-[32rem] lg:h-[36rem] xl:h-[38rem]" }: { slide: Slide, heightClass?: string; }) {
+  const isVideo = (slide.media ?? "").toLowerCase().endsWith(".mp4");
 
   return (
-    <Card className="relative h-[30rem] w-full overflow-hidden rounded-3xl border-0 shadow-sm">
+    <Card  className={cn(
+        "relative w-full overflow-hidden rounded-3xl border-0 shadow-sm",
+        heightClass
+      )}>
       {isVideo ? (
         <video
           className="absolute inset-0 h-full w-full object-cover"
@@ -45,15 +50,15 @@ export default function SlideCard({ slide }: { slide: Slide }) {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/10" />
       <div className="pointer-events-none absolute inset-0 ring-1 ring-black/5 rounded-3xl" />
 
-      <CardHeader className="relative z-10 p-5 sm:p-6 md:p-8">
+      <CardHeader className=" relative z-10 p-5 sm:p-6 md:p-8">
         <CardTitle className="text-[11px] font-medium uppercase tracking-wider text-white/80">
           {slide.title}
         </CardTitle>
       </CardHeader>
 
       <CardContent className="relative z-10 p-5 sm:p-6 md:p-8">
-        <div className="pointer-events-none absolute inset-x-4 top-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-md">
+        <div className="pointer-events-none absolute inset-x-4 top-44 -translate-y-1/2 text-center">
+          <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-extrabold tracking-tight text-white drop-shadow-md">
             {slide.body}
           </h1>
         </div>

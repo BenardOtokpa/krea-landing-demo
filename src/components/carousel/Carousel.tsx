@@ -16,7 +16,7 @@ import SlideCard from "../Cards";
 import type { Slide } from "@/components/Cards";
 
 type EmblaCarouselProps = {
-  slides: Slide[]; // <-- typed properly
+  slides: Slide[];
   options?: EmblaOptionsType;
 };
 
@@ -39,7 +39,6 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  // keep autoplay alive after manual interactions
   const withAutoplay = useCallback(
     (action: () => void) => {
       const autoplay = emblaApi?.plugins()?.autoplay as
@@ -52,9 +51,16 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
   );
 
   return (
-    <section className="max-w-full mx-auto pr-12 pl-4  h-[600px] [--slide-height:30rem] [--slide-spacing:1rem] [--slide-size:80%]">
-      <div className="overflow-hidden  h-full" ref={emblaRef}>
-        <div className="flex touch-pan-y bg-lime-100 h-full  not-even:touch-pinch-zoom [margin-left:calc(var(--slide-spacing)*-1)]">
+    <section
+      className={`outline outline-1 outline-amber-300
+        max-w-full mx-auto pr-12 pl-4
+        [--slide-spacing:1rem]
+        [--slide-size:85%] md:[--slide-size:72%] lg:[--slide-size:56%] xl:[--slide-size:55%]
+        mb-0
+      `}
+    >
+      <div className="overflow-hidden h-full" ref={emblaRef}>
+        <div className="flex h-full touch-pan-y [margin-left:calc(var(--slide-spacing)*-1)]">
           {slides.map((slide, idx) => (
             <div
               key={idx}
@@ -66,26 +72,22 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
         </div>
       </div>
 
-      {/* Controls: align to the right like the screenshot */}
-      <div className="ml-auto flex items-center justify-between gap-6 w-1/2">
-        {/* Dots (left side) */}
+      {/* Controls */}
+      <div className="ml-auto flex items-center justify-between gap-6 w-1/2 mt-4 mb-0 ">
         <div className="flex items-center gap-2">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
               onClick={() => withAutoplay(() => onDotButtonClick(index))}
               className={[
-                // Base dot
                 "h-2.5 w-2.5 rounded-full transition-colors",
-                // Inactive (light gray) vs active (black)
                 index === selectedIndex ? "bg-black" : "bg-neutral-300",
               ].join(" ")}
             />
           ))}
         </div>
 
-        {/* Arrows (right side*/}
-        <div className="flex items-center px-10">
+        <div className="flex items-center px-10 ">
           <PrevButton
             onClick={() => withAutoplay(onPrevButtonClick)}
             disabled={prevBtnDisabled}
