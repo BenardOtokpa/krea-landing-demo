@@ -52,15 +52,14 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
 
   return (
     <section
-      className={`max-w-full mx-auto pr-12 pl-4
-    h-[26rem] sm:h-[30rem] lg:h-[34rem] xl:h-[36rem]   /* a bit shorter */
-    [--slide-spacing:1rem]
+      className={`max-w-full mx-auto px-4 sm:px-6 lg:px-8
+    h-[28rem] sm:h-[32rem] lg:h-[36rem] xl:h-[38rem]
+    [--slide-spacing:0.75rem]
     [--slide-size:85%]
     md:[--slide-size:72%]
     lg:[--slide-size:56%]
     xl:[--slide-size:55%]
-   pb-0
-    -mb-2               /* <-- add this if you still see a gap */
+    mb-0 pb-0               
   `}
     >
       <div className="overflow-hidden h-full" ref={emblaRef}>
@@ -91,17 +90,21 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
           ))}
         </div>
 
-        <div className="flex items-center px-10 ">
-          <PrevButton
-            onClick={() => withAutoplay(onPrevButtonClick)}
-            disabled={prevBtnDisabled}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40"
-          />
-          <NextButton
-            onClick={() => withAutoplay(onNextButtonClick)}
-            disabled={nextBtnDisabled}
-            className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40"
-          />
+        <div className="flex items-center gap-1.5 px-10">
+          <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40">
+            <PrevButton
+              onClick={() => withAutoplay(onPrevButtonClick)}
+              disabled={prevBtnDisabled}
+              className="mr-1 h-3 w-3 "
+            />
+          </div>
+          <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-neutral-700 hover:bg-neutral-200 shadow-sm disabled:opacity-40">
+            <NextButton
+              onClick={() => withAutoplay(onNextButtonClick)}
+              disabled={nextBtnDisabled}
+              className="ml-1 h-3 w-3"
+            />
+          </div>
         </div>
       </div>
     </section>

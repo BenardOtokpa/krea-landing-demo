@@ -47,7 +47,7 @@ const slidesData: Slide[] = [
 
 export default function Hero() {
   return (
-    <div className="w-full mb-0 py-10 outline outline-1 outline-amber-300 ">
+    <div className="w-full py-10 pt-2 md:pt-3 pb-0 mb-20 ">
       <EmblaCarousel slides={slidesData} options={OPTIONS} />
     </div>
   );

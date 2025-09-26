@@ -30,7 +30,7 @@ export default function Header() {
       <div className="mx-auto flex h-16  items-center  justify-between gap-3 px-3 sm:px-6">
         {/* Left: brand + account switcher (truncate on small) */}
         <div className="flex min-w-0 items-center gap-3 sm:gap-4">
-          <KreaLogo className="w-8 h-8 text-black dark:text-white" />
+          <KreaLogo className="w-8 h-8 text-forrground" />
 
           {/* Account switcher (text hidden on xs) */}
           <DropdownMenu>

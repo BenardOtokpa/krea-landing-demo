@@ -11,6 +11,7 @@ import {
   MicVocal,
   PersonStanding,
   BrainCircuit,
+  ChevronDown,
 } from "lucide-react";
 import { GridItemCard, GridItem } from "./GridItems";
 
@@ -84,20 +85,20 @@ const items: GridItem[] = [
 
 export default function GenerateSection() {
   return (
-    <section className="mx-18 mt-0 outline outline-1 outline-lime-300">
+    <section className="mx-4 mt-3 md:mt-4 ">
       {/* Header row */}
-      <div className=" flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Generate</h2>
+      <div className=" flex items-center justify-between px-4">
+        <h2 className="text-2xl font-semibold">Generate</h2>
         <Link
           href="/show-all"
-          className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+          className=" flex items-center text-sm gap-0.5 font-medium text-blue-600 hover:underline dark:text-blue-400"
         >
-          Show all
+          <ChevronDown /> Show all
         </Link>
       </div>
 
       {/* Responsive grid */}
-      <div className="grid grid-cols-1 gap-x-5  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-y-2.5 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {items.map((it) => (
           <GridItemCard key={it.title} {...it} />
         ))}

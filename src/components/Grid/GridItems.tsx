@@ -23,8 +23,8 @@ export function GridItemCard({
   newBadge = false,
 }: GridItem) {
   return (
-    <Card className="overflow-hidden border-none  shadow-none">
-      <CardContent className="flex items-center  justify-between p-4 sm:p-5">
+    <Card className="overflow-hidden border-none shadow-none">
+  <CardContent className="flex items-center justify-between p-4 sm:p-5">
         {/* Left: icon + text */}
         <div className="flex min-w-0 items-start  gap-3">
           <div
