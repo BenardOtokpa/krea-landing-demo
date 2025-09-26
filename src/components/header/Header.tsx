@@ -26,7 +26,7 @@ import KreaLogo from "../KreaLogo";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40  w-full ">
+    <header className="sticky top-0 z-40  w-full  py-4 md:py-5 mb-0">
       <div className="mx-auto flex h-16  items-center  justify-between gap-3 px-3 sm:px-6">
         {/* Left: brand + account switcher (truncate on small) */}
         <div className="flex min-w-0 items-center gap-3 sm:gap-4">

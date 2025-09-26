@@ -4,10 +4,10 @@ import Hero from "@/components/hero/Hero";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="max-w-screen-3xl mx-auto px-4 sm:px-6 lg:px-10">
       <Header />
-      <Hero />
-      <Grid />
+      <Hero />     {/* spacing is controlled inside Hero */}
+      <Grid />     {/* small top margin inside Grid */}
     </div>
   );
 }
